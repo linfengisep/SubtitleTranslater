@@ -26,11 +26,23 @@ tr:nth-child(even) {
 
 </head>
 <body>
-	
-	
-    <form method="post" action="EditSubtitle">    
-        <input type="submit" style="position:fixed;top: 10px; right: 10px;" />
-	    <table style="position:fixed;top: 50px; right: 100px; left:10px">
+		<h3>Uploading your subtitle document:</h3>
+		<form method="POST" action="edit" enctype="multipart/form-data">	 
+		 	<p>
+				<label for="desc">Description:</label>
+			 	<input type="text" id="desc" name ="desc"/>
+			 </p>
+			 <p>
+				<label for=myfile>File:</label>
+			 	<input type="file" id="myfile" name ="myfile"/>
+			 </p>
+			 <input type="submit" value="envoyer" name ="uploading"/>
+		 </form>
+		 
+	<h3>Below is your translation section:</h3>
+    <form method="POST" action="edit"> 
+      <input type="submit" value="envoyer" style="position:relative;top: 10px; right: 10px; color:#0addd0"/>   
+	    <table style="position:relative;top: 50px; right: 10px; left:10px">
 	            <tr>
 	        		<td style="text-align:right;">Version Originale</td>
 	        		<td>Traduction</td>
@@ -43,5 +55,6 @@ tr:nth-child(even) {
 	    	</c:forEach>
 	    </table>
     </form>
+    
 </body>
 </html>
