@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import com.subtitlor.beans.Subtitle;
 import com.subtitlor.beans.SubtitleItem;
+import com.subtitlor.beans.TranslatedSubtitles;
 import com.subtitlor.dao.DaoFactory;
 import com.subtitlor.dao.SubtitleDaoImpl;
 
@@ -55,7 +56,9 @@ public class SubtitlesHandler {
 	public void updateTranslatedSubtitle(HashMap<Integer,String> subtitleTranslatedList){
 		subtitleDaoImpl.updateSubtitles(subtitleTranslatedList);
 	}
-	
+	public List<TranslatedSubtitles> getTranslatedSubtitles(){
+		return subtitleDaoImpl.getTranslatedSubtitles();
+	}
 	
 	public SubtitleItem getSubtitleType (List<String> lines) {
 		SubtitleItem item = new SubtitleItem();

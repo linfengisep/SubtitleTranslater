@@ -6,6 +6,12 @@ version="3.0">
 	<servlet>
 		<servlet-name>EditSubtitle</servlet-name>
 		<servlet-class>com.subtitlor.servlets.EditSubtitle</servlet-class>
+		<multipart-config>
+	    	<location>/Users/linfengwang/file_upload</location>
+	    	<max-file-size>10485760</max-file-size> <!-- 10 Mo -->
+	    	<max-request-size>52428800</max-request-size><!-- 5*10 Mo -->
+	    	<file-size-threshold>1048576</file-size-threshold><!-- 1 Mo -->
+	    </multipart-config>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>EditSubtitle</servlet-name>
@@ -15,12 +21,6 @@ version="3.0">
 	<servlet>
 		<servlet-name>UploadingFile</servlet-name>
 		<servlet-class>com.subtitlor.servlets.UploadingFile</servlet-class>
-		<multipart-config>
-	    	<location>/Users/linfengwang/file_upload</location>
-	    	<max-file-size>10485760</max-file-size> <!-- 10 Mo -->
-	    	<max-request-size>52428800</max-request-size><!-- 5*10 Mo -->
-	    	<file-size-threshold>1048576</file-size-threshold><!-- 1 Mo -->
-	    </multipart-config>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UploadingFile</servlet-name>

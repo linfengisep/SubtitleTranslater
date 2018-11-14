@@ -5,7 +5,6 @@
 <head>
 <meta charset="utf-8" />
 <title>Editer les sous-titres</title>
-
 <style>
 table {
     font-family: arial, sans-serif;
@@ -26,9 +25,12 @@ tr:nth-child(even) {
 
 </head>
 <body>
-		<h3>Uploading your subtitle document:</h3>
-		<form method="POST" action="edit" enctype="multipart/form-data">	 
-		 	<p>
+	<h3>Uploading file to translate below:</h3>
+	<c:if test="${! empty desc}">
+		<p><c:out value="${desc} a été téléchargé."/></p>
+	</c:if>
+	<form method="POST" action="edit" enctype="multipart/form-data">	 
+		 	 <p>
 				<label for="desc">Description:</label>
 			 	<input type="text" id="desc" name ="desc"/>
 			 </p>
@@ -37,12 +39,17 @@ tr:nth-child(even) {
 			 	<input type="file" id="myfile" name ="myfile"/>
 			 </p>
 			 <input type="submit" value="envoyer" name ="uploading"/>
-		 </form>
-		 
-	<h3>Below is your translation section:</h3>
+	</form>
+	
+	<h3>Export the translation in below section:</h3>	
+	<form action="edit" method="POST">
+		<input type="submit" name="export" value="export"/>
+	</form>
+	
+	<h3>Translation section below:</h3>
     <form method="POST" action="edit"> 
-      <input type="submit" value="envoyer" style="position:relative;top: 10px; right: 10px; color:#0addd0"/>   
-	    <table style="position:relative;top: 50px; right: 10px; left:10px">
+      <input type="submit" value="envoyer"/>   
+	    <table style="position:relative;top: 50px;">
 	            <tr>
 	        		<td style="text-align:right;">Version Originale</td>
 	        		<td>Traduction</td>

@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.subtitlor.beans.Subtitle;
 import com.subtitlor.beans.SubtitleItem;
+import com.subtitlor.beans.TranslatedSubtitles;
 
 public class SubtitleDaoImpl implements SubtitleDao {
 	DaoFactory daoFactory;
@@ -18,7 +19,6 @@ public class SubtitleDaoImpl implements SubtitleDao {
 	public SubtitleDaoImpl(DaoFactory daoFactory) {
 		this.daoFactory = daoFactory;
 	}
-
 	@Override
 	public List<Subtitle> getSubtitles() {
 		Connection connection = null;
@@ -117,6 +117,41 @@ public class SubtitleDaoImpl implements SubtitleDao {
 				}
 			}
 		}
+	}
+
+
+
+	@Override
+	public List<TranslatedSubtitles> getTranslatedSubtitles() {
+		String queryScritp="SELECT N.sceneId, N.timeLine, S.subtitleTranslated "
+				+ "FROM TimeId AS N join Subtitles AS S ON S.sceneId = N.sceneId";
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		List<TranslatedSubtitles> subtitles = new ArrayList<>();
+		try {
+			connection = daoFactory.getInstance().getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(queryScritp);
+			while(resultSet.next()) {
+				TranslatedSubtitles subtitle = new TranslatedSubtitles();
+				subtitle.setSceneId(resultSet.getInt("sceneId"));
+				subtitle.setTimeLine(resultSet.getString("timeLine"));
+				if(resultSet.getString("subtitleTranslated") != null) {
+					subtitle.setSubtitleVT(resultSet.getString("subtitleTranslated"));	
+				}
+				subtitles.add(subtitle);
+			}
+		}catch(SQLException e) {	
+		}finally {
+			try {
+				if(connection !=null) {
+					connection.close();
+				}
+			}catch(SQLException e) {	
+			}
+		}
+		return subtitles;
 	}
 
 }
