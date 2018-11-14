@@ -22,8 +22,9 @@ public class DaoFactory {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		}catch(ClassNotFoundException e) {
 		}
-		
-		DaoFactory instance = new DaoFactory("jdbc:mysql://localhost:3306/SubtitleDB","root","wlf5165804");
+		//TODO configure the dabasebase name, localhost and password according to your mysql configuration.
+		//DaoFactory instance = new DaoFactory("jdbc:mysql://localhost:3306/Nom_BD?","Utilisateur?","mot de pass?");
+		DaoFactory instance = new DaoFactory("jdbc:mysql://localhost:3306/SubtitlesDatabase","root","wlf5165804");
 		return instance;
 	}
 	

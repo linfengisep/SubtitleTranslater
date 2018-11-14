@@ -33,8 +33,10 @@ import com.subtitlor.utilities.SubtitlesHandler;
 public class EditSubtitle extends HttpServlet {
 	private static final int SIZE = 10240;
 	private static final long serialVersionUID = 1L;
-	private static final String FILE_NAME = "/WEB-INF/password_presentation.srt";
+	//private static final String FILE_PATH= "../Subtitlor/WebContent/WEB-INF/";
 	private static final String FILE_PATH= "/Users/linfengwang/Applications/subtitleTranslaterGit/Subtitlor/WebContent/WEB-INF/";
+	private String filePathWithName = null;
+	
 	ServletContext context =null;
     SubtitlesHandler handler = new SubtitlesHandler();
     
@@ -50,6 +52,8 @@ public class EditSubtitle extends HttpServlet {
 		}else if(request.getParameter("uploading") !=null) {
 			uploading(request,response);
 			request.setAttribute("desc", request.getParameter("desc"));
+			
+			loadingFileIntoDB(filePathWithName);
 		}else{
 			handler.updateTranslatedSubtitle(getTableValues(request));	
 		}
@@ -128,6 +132,9 @@ public class EditSubtitle extends HttpServlet {
 				
 				Part part = request.getPart("myfile");
 				String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+				StringBuffer sb = new StringBuffer(FILE_PATH);
+				sb.append(fileName);
+				filePathWithName = sb.toString();
 				request.setAttribute("fileName", fileName);
 				saveFileLocal(request,part,fileName,FILE_PATH);	
 			}else {

@@ -18,15 +18,6 @@ version="3.0">
 		<url-pattern>/edit</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>UploadingFile</servlet-name>
-		<servlet-class>com.subtitlor.servlets.UploadingFile</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>UploadingFile</servlet-name>
-		<url-pattern>/upload</url-pattern>
-	</servlet-mapping>
-	
   <jsp-config>
   	<jsp-property-group>
   		<url-pattern>*.jsp</url-pattern>

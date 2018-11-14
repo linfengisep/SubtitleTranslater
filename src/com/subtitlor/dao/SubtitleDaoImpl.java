@@ -83,7 +83,7 @@ public class SubtitleDaoImpl implements SubtitleDao {
 		PreparedStatement preparedStatement = null;
 		PreparedStatement preparedStatement1 = null;
 		String queryTimeId = "INSERT INTO TimeId(sceneId,timeLine) VALUES(?,?)";
-		String querySubtitle="INSERT INTO Subtitles(subtitle,subtitleTranslated,sceneId) VALUES(?,NULL,?)";
+		String querySubtitle="INSERT INTO Subtitles(subtitle,subtitleTranslated,sceneId) VALUES(?,?,?)";
 		try {
 			connection = daoFactory.getInstance().getConnection();
 			for(SubtitleItem item : subtitleList) {
@@ -96,7 +96,8 @@ public class SubtitleDaoImpl implements SubtitleDao {
 				for(String s: item.getSubtitles()) {
 					preparedStatement1 = connection.prepareStatement(querySubtitle);
 					preparedStatement1.setString(1, s);	
-					preparedStatement1.setInt(2, item.getId());
+					preparedStatement1.setString(2, "");
+					preparedStatement1.setInt(3, item.getId());
 					preparedStatement1.executeUpdate();
 				}
 				connection.commit();
